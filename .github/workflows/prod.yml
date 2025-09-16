@@ -20,18 +20,21 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+        working-directory: ./react_github_actions 
 
       - name: Run tests
         run: npm test --if-present
+        working-directory: ./react_github_actions 
 
       - name: Build
         run: npm run build --if-present
+        working-directory: ./react_github_actions
 
       - name: Deploy to Netlify
         # Using the widely used actions-netlify action
         uses: nwtgck/actions-netlify@v3.0
         with:
-          publish-dir: './dist'        # <-- change to './build' if your project uses CRA
+          publish-dir: './react_github_actions/dist'  # <-- change to './build' if your project uses CRA
           production-deploy: true
           deploy-message: "Deploy from GitHub Actions (main)"
         env:
